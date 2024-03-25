@@ -141,7 +141,8 @@ GROUP BY
 <img width="504" alt="AB testing 2" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/0a2fe6c6-46e9-465b-8882-62d09ebf484e">
 
 ##### 4. Use the final_assignments table to calculate the view binary, and average views for the 30 day window after the test assignment for item_test_2. (You may include the day the test started)
-
+#### Answer:
+I calculated the SUM, AVG and STDDEV of view_binary:
 ```
 SELECT 
   test_assignment,
@@ -178,9 +179,13 @@ FROM
 GROUP BY 
   test_assignment
 ```
+<img width="776" alt="image" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/e47b8e23-3f73-4b4c-8cab-c04b2bb05972">
 
 ##### 5. Use the https://thumbtack.github.io/abba/demo/abba.html to compute the lifts in metrics and the p-values for the binary metrics ( 30 day order binary and 30 day view binary) using a interval 95% confidence. 
 #### Answer:
+
 Both metrics are not statistically significant:
 - 30 day order binary (p-value = 0.93) > 0,05 (the null hypothesis is not rejected)
-- 
+
+
+- 30 day view binary (p-value = 0.27) > 0,05 (the null hypothesis is not rejected)
