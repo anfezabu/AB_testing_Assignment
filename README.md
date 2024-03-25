@@ -6,6 +6,16 @@
 #### Answer: 
 No, it doesn't. I need the test_start_date and the created_at variable.
 
+```
+SELECT 
+  * 
+FROM 
+  dsv1069.final_assignments_qa
+```
+
+<img width="1020" alt="image" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/fef593d6-db30-4c6f-bce9-e9853bf21566">
+
+
 ##### 2. Reformat the final_assignments_qa to look like the final_assignments table, filling in any missing values with a placeholder of the appropriate data type.
 #### Answer:
 I used the union function to create a table with the different tests inside rows and not columns. Futhermore, I assigned a different date to each test.
