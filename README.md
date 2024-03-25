@@ -6,4 +6,6 @@
 #### Answer: 
 No, it doesn't. I need the test_start_date and the created_at variable.
 
-#####
+##### Reformat the final_assignments_qa to look like the final_assignments table, filling in any missing values with a placeholder of the appropriate data type.
+#### Answer:
+I used the union function to create a table with the different tests inside rows and not columns. Futhermore, I assigned a different date to each test.
