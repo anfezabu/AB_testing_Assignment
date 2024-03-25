@@ -97,4 +97,45 @@ FROM
 ```
 <img width="1398" alt="AB testing 1" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/70512ea3-5c40-4e0d-99e0-79039cd78e7c">
 
-##### Use the final_assignments table to calculate the view binary, and average views for the 30 day window after the test assignment for item_test_2. (You may include the day the test started)
+##### 2.Use the final_assignments table to calculate the view binary, and average views for the 30 day window after the test assignment for item_test_2. (You may include the day the test started)
+#### Answer:
+```
+SELECT 
+  test_assignment,
+  COUNT(DISTINCT item_id) AS total_items,
+  SUM(orders_binary) AS items_ordered_within_30_days
+FROM
+  (SELECT 
+    item_id,
+    test_assignment,
+    test_number,
+    test_start_date,
+    created_at,
+    MAX(CASE
+          WHEN created_at > test_start_date
+          AND DATE_PART('day', created_at - test_start_date) <= 30 THEN 1
+          ELSE 0
+          END) AS orders_binary
+  FROM 
+    (SELECT 
+      f.*,
+      DATE(o.created_at) AS created_at
+    FROM 
+      dsv1069.final_assignments f
+    LEFT JOIN 
+      dsv1069.orders o
+    ON 
+    o.item_id = f.item_id
+    WHERE 
+      test_number = 'item_test_2') AS item_test_2
+  GROUP BY 
+    item_id,
+    test_assignment,
+    test_number,
+    test_start_date,
+    created_at) AS item_test_2_part_2<img width="504" alt="AB testing 2" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/8a51412b-bcee-49ff-8b45-8861b3e6d281">
+
+GROUP BY 
+  test_assignment
+```
+<img width="504" alt="AB testing 2" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/0a2fe6c6-46e9-465b-8882-62d09ebf484e">
