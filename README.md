@@ -6,7 +6,7 @@
 #### Answer: 
 No, it doesn't. I need the test_start_date and the created_at variable.
 
-##### Reformat the final_assignments_qa to look like the final_assignments table, filling in any missing values with a placeholder of the appropriate data type.
+##### 2. Reformat the final_assignments_qa to look like the final_assignments table, filling in any missing values with a placeholder of the appropriate data type.
 #### Answer:
 I used the union function to create a table with the different tests inside rows and not columns. Futhermore, I assigned a different date to each test.
 
@@ -97,7 +97,7 @@ FROM
 ```
 <img width="1398" alt="AB testing 1" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/70512ea3-5c40-4e0d-99e0-79039cd78e7c">
 
-##### 2.Use the final_assignments table to calculate the view binary, and average views for the 30 day window after the test assignment for item_test_2. (You may include the day the test started)
+##### 3. Use the final_assignments table to calculate the view binary, and average views for the 30 day window after the test assignment for item_test_2. (You may include the day the test started)
 #### Answer:
 ```
 SELECT 
@@ -139,3 +139,48 @@ GROUP BY
   test_assignment
 ```
 <img width="504" alt="AB testing 2" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/0a2fe6c6-46e9-465b-8882-62d09ebf484e">
+
+##### 4. Use the final_assignments table to calculate the view binary, and average views for the 30 day window after the test assignment for item_test_2. (You may include the day the test started)
+
+```
+SELECT 
+  test_assignment,
+  COUNT(item_id),
+  SUM(view_binary) total_views,
+  AVG(view_binary) AS avg_views_within_30_days,
+  STDDEV(view_binary) AS stddev_view_binary
+FROM 
+  (SELECT 
+    item_id,
+    test_assignment,
+    MAX(CASE 
+          WHEN view_time > test_start_date 
+          AND DATE_PART('day', view_time - test_start_date) <= 30 THEN 1
+          ELSE 0
+          END) AS view_binary
+  FROM
+    (SELECT 
+      f.*,
+      DATE(event_time) AS view_time
+    FROM
+      dsv1069.final_assignments f
+    LEFT JOIN 
+      dsv1069.events e
+    ON 
+      CAST(e.parameter_value AS INT) = f.item_id
+    WHERE 
+      parameter_name = 'item_id'
+    AND 
+      test_number = 'item_test_2') AS item_view_time
+  GROUP BY 
+    item_id,
+    test_assignment) AS view_binary
+GROUP BY 
+  test_assignment
+```
+
+##### 5. Use the https://thumbtack.github.io/abba/demo/abba.html to compute the lifts in metrics and the p-values for the binary metrics ( 30 day order binary and 30 day view binary) using a interval 95% confidence. 
+#### Answer:
+Both metrics are not statistically significant:
+- 30 day order binary (p-value = 0.93) > 0,05 (the null hypothesis is not rejected)
+- 
