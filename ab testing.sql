@@ -97,9 +97,6 @@ SELECT
 FROM 
   dsv1069.final_assignments_qa;
 
-<img width="564" alt="image" src="https://github.com/anfezabu/sql_projects/assets/164940373/1df48229-796c-49ca-bf23-2a4866328993">
-
-
 
 -- Use this table to 
 -- compute order_binary for the 30 day window after the test_start_date
@@ -141,8 +138,6 @@ FROM
 GROUP BY 
   test_assignment
 
-  <img width="501" alt="image" src="https://github.com/anfezabu/sql_projects/assets/164940373/871b870c-b588-46c7-afc2-5bb7e3138a8d">
-
 
 -- Use the final_assignments table to calculate the view binary, and
 -- average views for the 30 day window after the test assignment for
@@ -181,8 +176,7 @@ FROM
     test_assignment) AS view_binary
 GROUP BY 
   test_assignment
-  
-<img width="770" alt="image" src="https://github.com/anfezabu/sql_projects/assets/164940373/b118ca14-1015-47bf-afea-7b40c91b5742">
+
 
 --Use the https://thumbtack.github.io/abba/demo/abba.html to compute the lifts in metrics and the p-values for the binary metrics ( 30 day order binary and 30 day view binary) using a interval 95% confidence. 
 
@@ -190,5 +184,3 @@ GROUP BY
 --are not statistically significant.
 
 -- 30 day order binary (p-value = 0.93) > 0,05 (the null hypothesis is not rejected)
-
-<img width="829" alt="image" src="https://github.com/anfezabu/sql_projects/assets/164940373/8f5efb6b-7622-4841-8f09-96cf2ef1b510">
