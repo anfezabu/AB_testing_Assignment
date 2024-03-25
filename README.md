@@ -186,6 +186,8 @@ GROUP BY
 
 Both metrics are not statistically significant:
 - 30 day order binary (p-value = 0.93) > 0,05 (the null hypothesis is not rejected)
+<img width="841" alt="image" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/fc0bfa5c-016c-4bb7-b455-09c518904e39">
 
-
+For the view binary I used the sum(view_binary)
 - 30 day view binary (p-value = 0.27) > 0,05 (the null hypothesis is not rejected)
+<img width="836" alt="image" src="https://github.com/anfezabu/SQL_Projects/assets/164940373/08f94050-f6f6-47b2-bf69-fa7bdf65c6eb">
